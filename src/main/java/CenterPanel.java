@@ -57,5 +57,6 @@ public class CenterPanel extends JPanel {
         }
 
         g2d.dispose();
+        System.out.println("");
     }
 }
