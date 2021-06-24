@@ -18,8 +18,9 @@ import javax.swing.JPanel;
  */
 public class CenterPanel extends JPanel {
 
-    private Planerspiegel Spiegel = new Planerspiegel (0, 0, 0, 0);
+    private Planerspiegel Spiegel = new Planerspiegel(0, 0, 0, 0);
     private Ball Anfangspunkt = null; //Null=Variable Ball, aber noch keinen Ball dafür erzeugt -> damit erst ein Ball beim Klicken gezeichnet wird 
+    private boolean ersterKlick = true;
 
     CenterPanel() {
 
@@ -28,13 +29,22 @@ public class CenterPanel extends JPanel {
         this.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                Anfangspunkt = new Ball (e.getX(), e.getY());
 
-                CenterPanel.this.repaint();
+                if (ersterKlick == true) {
+                    Anfangspunkt = new Ball(e.getX(), e.getY());
+
+                    ersterKlick = false;
+
+                    CenterPanel.this.repaint();
+                    
+                 
+                }
+                else {
+                    
+                }
             }
         });
     }
-    
 
     @Override
     public void paintComponent(Graphics g) {
@@ -45,18 +55,18 @@ public class CenterPanel extends JPanel {
 
         int w = this.getWidth();
         int h = this.getHeight();
-        Spiegel.x = w-100; 
+        Spiegel.x = w - 100;
         Spiegel.w = 20;
-        Spiegel.h = h-(int)(h*0.4);
-        Spiegel.y = (int)(h*0.2);
-        
+        Spiegel.h = h - (int) (h * 0.4);
+        Spiegel.y = (int) (h * 0.2);
+
         Spiegel.paint(g2d);
-        
+
         if (Anfangspunkt != null) {     // ungleich Null = es gibt einen Ball 
             Anfangspunkt.paint(g2d);
         }
 
         g2d.dispose();
-        
+
     }
 }
