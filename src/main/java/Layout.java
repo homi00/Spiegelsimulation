@@ -39,34 +39,13 @@ public class Layout implements ActionListener {
          ButtonPanel guteButtons = new ButtonPanel();
         borders.add(guteButtons, BorderLayout.SOUTH);
 
-//        borders.add(centerPanel, BorderLayout.CENTER);
-//
-//        centerPanel.setBackground(Color.black);
+      
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setLocationRelativeTo(null);
         frame.setSize(420, 420);
         frame.setVisible(true);
 
-//        planeButton.setBounds(100, 160, 400, 150);
-//        planeButton.addActionListener(this);
-//        
-//        frame.add(planeButton);
-//        
-//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        frame.setSize(440, 600);
-//        frame.setLocationRelativeTo(null);
-//        frame.setVisible(true);
-//        
-    }
-
-//    @Override
-//    public void actionPerformed(ActionEvent e) {
-//        if(e.getSource()==planeButton){
-//            frame.dispose();
-//            WindowPlainMirror Window1 = new WindowPlainMirror();
-//            
-//        }
-//    }
+   }
     @Override
     public void actionPerformed(ActionEvent arg0) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

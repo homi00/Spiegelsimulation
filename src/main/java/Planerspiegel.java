@@ -1,35 +1,33 @@
-import java.awt.Color;
-import static java.awt.Color.pink;
+import static java.awt.Color.white;
 import java.awt.Graphics2D;
-
 
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 /**
  *
- * @author Customer
+ * @author theresastein
  */
-public class Ball {
-
+public class Planerspiegel {
+    
     public int x;
     public int y;
-    public int r;
-    public Color c;
-
-    public Ball(int x, int y) {
+    public int w; // width: Breite
+    public int h; //Höhe 
+    
+    public Planerspiegel(int x, int y, int w, int h) {
         this.x = x;
         this.y = y;
-        this.r = 20;
-        this.c = pink;
-
+        this.w = w;
+        this.h = h;
     }
 
     public void paint (Graphics2D g){
-	g.setColor(c);
-        g.fillOval(x-r/2, y-r/2, r, r);
+	g.setColor(white);
+        g.fillRect(x+w/2, y, 20, h );
         
     }
 }
