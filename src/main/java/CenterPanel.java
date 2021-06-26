@@ -1,11 +1,13 @@
-
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.RenderingHints;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.geom.Point2D;
 import javax.swing.JPanel;
+import static java.awt.Color.yellow;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -19,7 +21,8 @@ import javax.swing.JPanel;
 public class CenterPanel extends JPanel {
 
     private Planerspiegel Spiegel = new Planerspiegel(0, 0, 0, 0);
-    private Ball Anfangspunkt = null; //Null=Variable Ball, aber noch keinen Ball dafür erzeugt -> damit erst ein Ball beim Klicken gezeichnet wird 
+    private Point point1 = null;
+    private Point point2 = null;
     private boolean ersterKlick = true;
 
     CenterPanel() {
@@ -29,19 +32,16 @@ public class CenterPanel extends JPanel {
         this.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-
+                //Anfangspunkt = new Ball (e.getX(), e.getY());
                 if (ersterKlick == true) {
-                    Anfangspunkt = new Ball(e.getX(), e.getY());
+                    point1 = new Point(e.getX(), e.getY());
 
                     ersterKlick = false;
 
-                    CenterPanel.this.repaint();
-                    
-                 
+                } else {
+                    point2 = new Point(e.getX(), e.getY());
                 }
-                else {
-                    
-                }
+                CenterPanel.this.repaint();
             }
         });
     }
@@ -62,11 +62,20 @@ public class CenterPanel extends JPanel {
 
         Spiegel.paint(g2d);
 
-        if (Anfangspunkt != null) {     // ungleich Null = es gibt einen Ball 
-            Anfangspunkt.paint(g2d);
+        if (point1 != null) {     // ungleich Null = es gibt einen Ball 
+            Ball ball = new Ball(point1.x, point1.y);
+            ball.paint(g2d);
         }
+        if (point1 != null && point2 != null) {
+            Point point3 = Spiegel.calcPoint(point1, point2);
+            g2d.setColor(yellow);
+            g2d.drawLine(point1.x, point1.y, point3.x, point3.y);
+            if (Spiegel.IsOnMirror(point1, point2)) {
+                Point point4 = Spiegel.calcReflectedPoint(point1, point2);
+                g2d.drawLine(point3.x, point3.y, point4.x, point4.y);
+            }
 
+        }
         g2d.dispose();
-
     }
 }
