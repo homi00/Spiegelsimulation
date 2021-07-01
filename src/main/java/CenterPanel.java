@@ -1,3 +1,4 @@
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -73,7 +74,12 @@ public class CenterPanel extends JPanel {
             if (Spiegel.IsOnMirror(point1, point2)) {
                 Point point4 = Spiegel.calcReflectedPoint(point1, point2);
                 g2d.drawLine(point3.x, point3.y, point4.x, point4.y);
-            }
+
+            } else {
+                Point infinitePoint = Spiegel.infiniteLine(point1, point2);
+                g2d.setColor(yellow);
+                g2d.drawLine(point3.x, point3.y, 2000000000, infinitePoint.y);
+            };
 
         }
         g2d.dispose();
