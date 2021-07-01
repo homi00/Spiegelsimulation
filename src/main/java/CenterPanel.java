@@ -78,7 +78,7 @@ public class CenterPanel extends JPanel {
             } else {
                 Point infinitePoint = Spiegel.infiniteLine(point1, point2);
                 g2d.setColor(yellow);
-                g2d.drawLine(point3.x, point3.y, 2000000000, infinitePoint.y);
+                g2d.drawLine(point3.x, point3.y, 10000, infinitePoint.y);
             };
 
         }

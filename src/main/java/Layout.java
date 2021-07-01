@@ -37,6 +37,14 @@ public class Layout implements ActionListener {
         borders.add(gutesCenter, BorderLayout.CENTER);
 
          ButtonPanel guteButtons = new ButtonPanel();
+         
+//         planeButton.addActionListener(new ActionListener() {
+//            public void actionPerformed(ActionEvent e) {
+//                startAnimation();
+//            }}
+         
+         
+         
         borders.add(guteButtons, BorderLayout.SOUTH);
 
       

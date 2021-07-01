@@ -39,8 +39,8 @@ public class Planerspiegel {
     
      public Point infiniteLine(Point point1, Point point2) {
         double m = (double) (point2.y - point1.y) / (double) (point2.x - point1.x);
-        double y = m * (2000000000 - point1.x) + point1.y;
-        return new Point(2000000000, (int) y);          
+        double y = m * (10000 - point1.x) + point1.y;
+        return new Point(10000, (int) y);          
     }
     
     
