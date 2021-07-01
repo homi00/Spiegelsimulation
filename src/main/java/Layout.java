@@ -36,7 +36,7 @@ public class Layout implements ActionListener {
         CenterPanel gutesCenter = new CenterPanel();
         borders.add(gutesCenter, BorderLayout.CENTER);
 
-         ButtonPanel guteButtons = new ButtonPanel();
+         ButtonPanel guteButtons = new ButtonPanel(gutesCenter);
          
 //         planeButton.addActionListener(new ActionListener() {
 //            public void actionPerformed(ActionEvent e) {

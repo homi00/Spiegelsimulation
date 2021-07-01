@@ -1,4 +1,6 @@
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -7,27 +9,35 @@ import javax.swing.JPanel;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Customer
  */
 public class ButtonPanel extends JPanel {
-    
-    
-    
-    ButtonPanel (){
-        
-    JButton planeButton = new JButton("Planer Spiegel");
-    JButton concaveButton = new JButton("Konkaver Spiegel");
-    JButton convexButton = new JButton("Konvexer Spiegel");
-    
-    add(planeButton);
 
-    add(concaveButton);
+    CenterPanel centerPanel;
 
-    add(convexButton);
-    
-}
+    ButtonPanel(CenterPanel centerPanel) {
+        this.centerPanel = centerPanel;
+
+        JButton planeButton = new JButton("Planer Spiegel");
+        planeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                centerPanel.reset();
+                centerPanel.repaint();
+            }
+        });
+
+        JButton concaveButton = new JButton("Konkaver Spiegel");
+        JButton convexButton = new JButton("Konvexer Spiegel");
+
+        add(planeButton);
+
+        add(concaveButton);
+
+        add(convexButton);
+
+    }
 
 }

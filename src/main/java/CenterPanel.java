@@ -47,6 +47,13 @@ public class CenterPanel extends JPanel {
         });
     }
 
+    public void reset() {
+        Spiegel = new Planerspiegel(0, 0, 0, 0);
+        point1 = null;
+        point2 = null;
+        ersterKlick = true;
+    }
+
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
