@@ -1,4 +1,5 @@
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -21,7 +22,8 @@ import static java.awt.Color.yellow;
  */
 public class CenterPanel extends JPanel {
 
-    private Planerspiegel Spiegel = new Planerspiegel(0, 0, 0, 0);
+    private Planerspiegel PSpiegel = new Planerspiegel(0, 0, 0, 0);
+    private KonkaverSpiegel KSpiegel = new KonkaverSpiegel(0, 0, 0, 0, 0, 0);
     private Point point1 = null;
     private Point point2 = null;
     private boolean ersterKlick = true;
@@ -48,7 +50,7 @@ public class CenterPanel extends JPanel {
     }
 
     public void reset() {
-        Spiegel = new Planerspiegel(0, 0, 0, 0);
+        PSpiegel = new Planerspiegel(0, 0, 0, 0);
         point1 = null;
         point2 = null;
         ersterKlick = true;
@@ -63,27 +65,40 @@ public class CenterPanel extends JPanel {
 
         int w = this.getWidth();
         int h = this.getHeight();
-        Spiegel.x = w - 100;
-        Spiegel.w = 20;
-        Spiegel.h = h - (int) (h * 0.4);
-        Spiegel.y = (int) (h * 0.2);
+        PSpiegel.x = w - 100;
+        PSpiegel.w = 20;
+        PSpiegel.h = h - (int) (h * 0.4);
+        PSpiegel.y = (int) (h * 0.2);
 
-        Spiegel.paint(g2d);
+        PSpiegel.paint(g2d);
+        
 
+        KSpiegel.arg0 = w - 120;
+        KSpiegel.arg1 = (int) (h * 0.2);
+        KSpiegel.arg2 = 100;
+        KSpiegel.arg3 = 200;
+        KSpiegel.arg4 = 270;
+        KSpiegel.arg5 = 180;
+        
+        g2d.setStroke(new BasicStroke(10));   // Erzeugt breite bei Arc (nicht nur Arc) 
+        KSpiegel.paint(g2d);
+        g2d.setStroke(new BasicStroke(1));
+        
+        
         if (point1 != null) {     // ungleich Null = es gibt einen Ball 
             Ball ball = new Ball(point1.x, point1.y);
             ball.paint(g2d);
         }
         if (point1 != null && point2 != null) {
-            Point point3 = Spiegel.calcPoint(point1, point2);
+            Point point3 = PSpiegel.calcPoint(point1, point2);
             g2d.setColor(yellow);
             g2d.drawLine(point1.x, point1.y, point3.x, point3.y);
-            if (Spiegel.IsOnMirror(point1, point2)) {
-                Point point4 = Spiegel.calcReflectedPoint(point1, point2);
+            if (PSpiegel.IsOnMirror(point1, point2)) {
+                Point point4 = PSpiegel.calcReflectedPoint(point1, point2);
                 g2d.drawLine(point3.x, point3.y, point4.x, point4.y);
 
             } else {
-                Point infinitePoint = Spiegel.infiniteLine(point1, point2);
+                Point infinitePoint = PSpiegel.infiniteLine(point1, point2);
                 g2d.setColor(yellow);
                 g2d.drawLine(point3.x, point3.y, 10000, infinitePoint.y);
             };
