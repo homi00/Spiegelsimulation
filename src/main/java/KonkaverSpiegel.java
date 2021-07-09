@@ -43,7 +43,7 @@ public class KonkaverSpiegel {
      public void paint(Graphics2D g) {
         g.setColor(green);
 
-         g.drawArc(arg0, arg1, 100, 200, 270, 180);
+         g.drawArc(arg0, arg1, arg2, arg3, -45, 90);
         
     }
 

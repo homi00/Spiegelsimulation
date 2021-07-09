@@ -53,7 +53,7 @@ public class Planerspiegel {
 
     public void paint(Graphics2D g) {
         g.setColor(white);
-        g.fillRect(x , y, 20, h);
+        g.fillRect(x , y, 15, h);
          
                  
     }

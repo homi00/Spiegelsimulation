@@ -66,21 +66,21 @@ public class CenterPanel extends JPanel {
         int w = this.getWidth();
         int h = this.getHeight();
         PSpiegel.x = w - 100;
-        PSpiegel.w = 20;
+        PSpiegel.w = 15;
         PSpiegel.h = h - (int) (h * 0.4);
         PSpiegel.y = (int) (h * 0.2);
 
         PSpiegel.paint(g2d);
         
 
-        KSpiegel.arg0 = w - 120;
-        KSpiegel.arg1 = (int) (h * 0.2);
-        KSpiegel.arg2 = 100;
-        KSpiegel.arg3 = 200;
-        KSpiegel.arg4 = 270;
-        KSpiegel.arg5 = 180;
+        KSpiegel.arg0 = w - 300;
+        KSpiegel.arg1 = (int) (h * 0.1);
+        KSpiegel.arg2 = w - 500;
+        KSpiegel.arg3 = (int) (KSpiegel.arg2 * 2);
+        KSpiegel.arg4 = -45;
+        KSpiegel.arg5 = 90;
         
-        g2d.setStroke(new BasicStroke(10));   // Erzeugt breite bei Arc (nicht nur Arc) 
+        g2d.setStroke(new BasicStroke(15));   // Erzeugt breite bei Arc (nicht nur Arc) 
         KSpiegel.paint(g2d);
         g2d.setStroke(new BasicStroke(1));
         
