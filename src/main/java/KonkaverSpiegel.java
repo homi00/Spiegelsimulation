@@ -21,6 +21,7 @@ public class KonkaverSpiegel implements SpiegelObjekt {
     public int arg3; // Höhe setzt Streckung in Vertikale
     public int arg4; // Startpunktwinkel gegen Uhrzeigersinn startet horizontal links
     public int arg5; // Anteil des Kreisbogens mit Uhrzeigersinn
+    int diameter = 0;
 
     public KonkaverSpiegel(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5) {
         this.arg0 = arg0;
@@ -32,11 +33,19 @@ public class KonkaverSpiegel implements SpiegelObjekt {
     }
 
      public boolean IsOnMirror(Point point1, Point point2){
-     return false;
+     return true;
      }
      
     public Point calcPoint(Point point1, Point point2){
-     return new Point (0,0);   
+     double m = (double) (point2.y - point1.y) / (double) (point2.x - point1.x); 
+     double b = (double) (point1.y) - m * (double)(point1.x);
+     double r = (double) diameter/2;
+     double p = (2.0 * m * b)/ (1.0 + m * m);
+     double q = (b*b-r*r)/ (1.0 +m*m);
+     double x1 = (-p/2.0)+ Math.sqrt((p*p/4.0)-q);
+     double y1 = Math.sqrt(r*r-x1*x1);
+     return new Point ((int) x1 + arg0, (int) y1 + arg1);
+             
     }
 
     public Point infiniteLine(Point point1, Point point2){
@@ -48,21 +57,21 @@ public class KonkaverSpiegel implements SpiegelObjekt {
     }
     
     
-    public void update(int width, int height) {
-
-        arg0 = width - 300;
-        arg1 = (int) (height * 0.2);
-        arg2 = height - (int) (height * 0.4);
-        arg3 = height - (int) (height * 0.4);
+    public void update(int width, int height) {      
+        diameter = height - 200;
+        arg0 = width - diameter - 50;
+        arg1 = 100;
+        arg2 = diameter;
+        arg3 = diameter;
         arg4 = -45;
-        arg5 = 360;
+        arg5 = 90;
 
     }
 
     public void paint(Graphics2D g) {
         g.setColor(green);
         g.setStroke(new BasicStroke(15));   // Erzeugt breite bei Arc 
-        g.drawArc(arg0, arg1, arg2, arg3, -45, 360);
+        g.drawArc(arg0, arg1, arg2, arg3, -45, 90);
         g.setStroke(new BasicStroke(1));
     }
 
