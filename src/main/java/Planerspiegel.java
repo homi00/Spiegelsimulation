@@ -11,7 +11,7 @@ import java.awt.Point;
  *
  * @author theresastein
  */
-public class Planerspiegel {
+public class Planerspiegel implements SpiegelObjekt{
 
     public int x;
     public int y;
@@ -51,11 +51,22 @@ public class Planerspiegel {
         return new Point (point1.x , y);
     }
 
+     public void update(int width, int height) {
+
+       
+        x = width - 100;
+        w = 15;
+        h = height - (int) (height * 0.4);
+        y = (int) (height * 0.2);
+    
+     }
+    
+    
     public void paint(Graphics2D g) {
         g.setColor(white);
         g.fillRect(x , y, 15, h);
          
                  
     }
-}
 
+}

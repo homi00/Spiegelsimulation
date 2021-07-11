@@ -24,13 +24,28 @@ public class ButtonPanel extends JPanel {
         planeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                centerPanel.reset();
-                centerPanel.repaint();
+                centerPanel.setPlanerspiegel();
+
             }
         });
 
         JButton concaveButton = new JButton("Konkaver Spiegel");
+        concaveButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                centerPanel.setKonkaverSpiegel();
+
+            }
+        });
+
         JButton convexButton = new JButton("Konvexer Spiegel");
+        convexButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                centerPanel.setKonvexerSpiegel();
+
+            }
+        });
 
         add(planeButton);
 

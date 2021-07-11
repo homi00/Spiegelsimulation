@@ -30,15 +30,11 @@ public class Layout implements ActionListener {
 
         ButtonPanel guteButtons = new ButtonPanel(gutesCenter);
 
-//         planeButton.addActionListener(new ActionListener() {
-//            public void actionPerformed(ActionEvent e) {
-//                startAnimation();
-//            }}
+
         borders.add(guteButtons, BorderLayout.SOUTH);
 
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.setLocationRelativeTo(null);
-        
+        frame.setLocationRelativeTo(null);        
         frame.setMinimumSize(new Dimension(700, 500));
         frame.setVisible(true);
 
