@@ -97,6 +97,9 @@ public class CenterPanel extends JPanel {
             Ball ball = new Ball(point1.x, point1.y);
             ball.paint(g2d);
         }
+        
+        
+        
         if (point1 != null && point2 != null) {
             Point point3 = spiegel.calcPoint(point1, point2);
             g2d.setColor(yellow);

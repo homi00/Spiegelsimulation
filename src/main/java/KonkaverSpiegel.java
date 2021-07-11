@@ -50,19 +50,19 @@ public class KonkaverSpiegel implements SpiegelObjekt {
     
     public void update(int width, int height) {
 
-        arg0 = width - (int) (width * 0.6);
-        arg1 = (int) (height * 0.1);
-        arg2 = width - (int) (width * 0.5);
-        arg3 = height - 100;
+        arg0 = width - 300;
+        arg1 = (int) (height * 0.2);
+        arg2 = height - (int) (height * 0.4);
+        arg3 = height - (int) (height * 0.4);
         arg4 = -45;
-        arg5 = 90;
+        arg5 = 360;
 
     }
 
     public void paint(Graphics2D g) {
         g.setColor(green);
         g.setStroke(new BasicStroke(15));   // Erzeugt breite bei Arc 
-        g.drawArc(arg0, arg1, arg2, arg3, -45, 90);
+        g.drawArc(arg0, arg1, arg2, arg3, -45, 360);
         g.setStroke(new BasicStroke(1));
     }
 
