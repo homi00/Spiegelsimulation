@@ -1,6 +1,6 @@
 
 import java.awt.BasicStroke;
-import static java.awt.Color.green;
+import static java.awt.Color.red;
 import java.awt.Graphics2D;
 
 /*
@@ -41,9 +41,9 @@ public class KonvexerSpiegel {
   
     
      public void paint(Graphics2D g) {
-        g.setColor(green);
+        g.setColor(red);
 
-         g.drawArc(arg0, arg1, arg2, arg3, -135, 90);
+         g.drawArc(arg0, arg1, arg2, arg3, -225, 90);
         
     }
 

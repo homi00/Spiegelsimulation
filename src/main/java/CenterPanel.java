@@ -81,11 +81,11 @@ public class CenterPanel extends JPanel {
         KKSpiegel.arg4 = -45;
         KKSpiegel.arg5 = 90;
         
-        KVSpiegel.arg0 = w - (int) (w * 0.6);
+        KVSpiegel.arg0 = w - (int) (w * 0.2);
         KVSpiegel.arg1 = (int) (h * 0.1);
         KVSpiegel.arg2 = w - (int) (w * 0.5);
         KVSpiegel.arg3 = h - 100 ;
-        KVSpiegel.arg4 = -135;
+        KVSpiegel.arg4 = -225;
         KVSpiegel.arg5 = 90;
         
         
@@ -94,6 +94,7 @@ public class CenterPanel extends JPanel {
         
         g2d.setStroke(new BasicStroke(15));   // Erzeugt breite bei Arc 
         KKSpiegel.paint(g2d);
+        KVSpiegel.paint(g2d);
         g2d.setStroke(new BasicStroke(1));
         
         
