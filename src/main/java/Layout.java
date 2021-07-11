@@ -39,7 +39,7 @@ public class Layout implements ActionListener {
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setLocationRelativeTo(null);
         
-        frame.setMinimumSize(new Dimension(700, 560));
+        frame.setMinimumSize(new Dimension(700, 500));
         frame.setVisible(true);
 
         

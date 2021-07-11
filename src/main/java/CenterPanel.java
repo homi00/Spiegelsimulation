@@ -23,7 +23,8 @@ import static java.awt.Color.yellow;
 public class CenterPanel extends JPanel {
 
     private Planerspiegel PSpiegel = new Planerspiegel(0, 0, 0, 0);
-    private KonkaverSpiegel KSpiegel = new KonkaverSpiegel(0, 0, 0, 0, 0, 0);
+    private KonkaverSpiegel KKSpiegel = new KonkaverSpiegel(0, 0, 0, 0, 0, 0);
+    private KonvexerSpiegel KVSpiegel = new KonvexerSpiegel(0, 0, 0, 0, 0, 0);
     private Point point1 = null;
     private Point point2 = null;
     private boolean ersterKlick = true;
@@ -73,15 +74,26 @@ public class CenterPanel extends JPanel {
         PSpiegel.paint(g2d);
         
 
-        KSpiegel.arg0 = w - 300;
-        KSpiegel.arg1 = (int) (h * 0.1);
-        KSpiegel.arg2 = w - 500;
-        KSpiegel.arg3 = (int) (KSpiegel.arg2 * 2);
-        KSpiegel.arg4 = -45;
-        KSpiegel.arg5 = 90;
+        KKSpiegel.arg0 = w - (int) (w * 0.6);
+        KKSpiegel.arg1 = (int) (h * 0.1);
+        KKSpiegel.arg2 = w - (int) (w * 0.5);
+        KKSpiegel.arg3 = h - 100 ;
+        KKSpiegel.arg4 = -45;
+        KKSpiegel.arg5 = 90;
         
-        g2d.setStroke(new BasicStroke(15));   // Erzeugt breite bei Arc (nicht nur Arc) 
-        KSpiegel.paint(g2d);
+        KVSpiegel.arg0 = w - (int) (w * 0.6);
+        KVSpiegel.arg1 = (int) (h * 0.1);
+        KVSpiegel.arg2 = w - (int) (w * 0.5);
+        KVSpiegel.arg3 = h - 100 ;
+        KVSpiegel.arg4 = -135;
+        KVSpiegel.arg5 = 90;
+        
+        
+        
+        
+        
+        g2d.setStroke(new BasicStroke(15));   // Erzeugt breite bei Arc 
+        KKSpiegel.paint(g2d);
         g2d.setStroke(new BasicStroke(1));
         
         
