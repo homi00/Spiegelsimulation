@@ -34,7 +34,7 @@ public class Layout implements ActionListener {
         borders.add(guteButtons, BorderLayout.SOUTH);
 
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.setLocationRelativeTo(null);        
+//        frame.setLocationRelativeTo(null);        
         frame.setMinimumSize(new Dimension(700, 500));
         frame.setVisible(true);
 
