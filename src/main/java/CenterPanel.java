@@ -21,7 +21,7 @@ import static java.awt.Color.yellow;
 public class CenterPanel extends JPanel {
 
     
-    private SpiegelObjekt spiegel = new Planerspiegel(0,0,0,0);
+    private SpiegelObjekt spiegel = new Planerspiegel();
     
     private Point point1 = null;
     private Point point2 = null;
@@ -49,7 +49,7 @@ public class CenterPanel extends JPanel {
     }
 
     public void setPlanerspiegel() {
-        spiegel = new Planerspiegel(0, 0, 0, 0);
+        spiegel = new Planerspiegel();
         point1 = null;
         point2 = null;
         ersterKlick = true;
@@ -57,7 +57,7 @@ public class CenterPanel extends JPanel {
     }
     
      public void setKonkaverSpiegel() {
-        spiegel = new KonkaverSpiegel(0, 0, 0, 0,0, 0);
+        spiegel = new KonkaverSpiegel();
         point1 = null;
         point2 = null;
         ersterKlick = true;
@@ -65,7 +65,7 @@ public class CenterPanel extends JPanel {
     }
 
      public void setKonvexerSpiegel() {
-        spiegel = new KonvexerSpiegel(0, 0, 0, 0, 0, 0);
+        spiegel = new KonvexerSpiegel();
         point1 = null;
         point2 = null;
         ersterKlick = true;

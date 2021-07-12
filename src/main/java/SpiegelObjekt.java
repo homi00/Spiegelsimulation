@@ -17,8 +17,6 @@ public interface SpiegelObjekt {
     void update(int width, int height);
 
     void paint(Graphics2D g);
-    
-    
 
     public boolean IsOnMirror(Point point1, Point point2);
 

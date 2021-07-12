@@ -15,67 +15,63 @@ import java.awt.Point;
  */
 public class KonkaverSpiegel implements SpiegelObjekt {
 
-    public int arg0;  //x-Koord. obere linke Ecke
-    public int arg1; //y-Koord. obere linke Ecke
-    public int arg2; // setzt Breite in Horizontale
-    public int arg3; // Höhe setzt Streckung in Vertikale
-    public int arg4; // Startpunktwinkel gegen Uhrzeigersinn startet horizontal links
-    public int arg5; // Anteil des Kreisbogens mit Uhrzeigersinn
-    int diameter = 0;
+    private int arg0 = 0;  //x-Koord. obere linke Ecke
+    private int arg1 = 100; //y-Koord. obere linke Ecke
+    private int arg2 = 0; // setzt Breite in Horizontale
+    private int arg3 = 0; // Höhe setzt Streckung in Vertikale
+    private int arg4 = -45; // Startpunktwinkel gegen Uhrzeigersinn startet horizontal links
+    private int arg5 = 90; // Anteil des Kreisbogens mit Uhrzeigersinn
+    private int diameter = 0;
 
-    public KonkaverSpiegel(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5) {
-        this.arg0 = arg0;
-        this.arg1 = arg1;
-        this.arg2 = arg2;
-        this.arg3 = arg3;
-        this.arg4 = arg4;
-        this.arg5 = arg5;
+    public KonkaverSpiegel() {
     }
 
-     public boolean IsOnMirror(Point point1, Point point2){
-     return true;
-     }
-     
-     
-     
-    public Point calcPoint(Point point1, Point point2){
-      
-//     diameter = height - 200;
-     double m = (double) (point2.y - point1.y) / (double) (point2.x - point1.x); 
-     double b = (double) (point1.y) - m * (double)(point1.x);
-     double r = (double) diameter/2;
-     double p = (2.0 * m * b)/ (1.0 + m * m);
-     double q = (b*b-r*r)/ (1.0 +m*m);
-     double x1 = (-p/2.0)+ Math.sqrt((p*p/4.0)-q);
-     double y1 = Math.sqrt(r*r-x1*x1);
-     return new Point ((int) x1 + arg0, (int) y1 + arg1);
-            
+    public boolean IsOnMirror(Point point1, Point point2) {
+        double r = (double) diameter / 2;
+        double xk = arg0 + r;
+        r = r - 7.5;
+        double a = r * Math.cos((Math.abs(arg4) + 1.5) * Math.PI / 180.0) + xk;
+        Point point3 = calcPoint(point1, point2);
+        return point3.x >= a;
     }
 
-    public Point infiniteLine(Point point1, Point point2){
-      return new Point (0,0);   
+    public Point calcPoint(Point point1, Point point2) {
+        double m = (double) (point2.y - point1.y) / (double) (point2.x - point1.x);
+        double b = (double) (point1.y) - m * (double) (point1.x);
+        double r = (double) diameter / 2;
+        double xk = arg0 + r;
+        double yk = arg1 + r;
+        r = r - 7.5;
+        double z = b - yk;
+        double p = (2.0 * m * z - 2.0 * xk) / (m * m + 1.0);
+        double q = (z * z + xk * xk - r * r) / (m * m + 1.0);
+        double x1 = (-p / 2.0) + Math.sqrt((p * p / 4.0) - q);
+        double y1 = m * x1 + b;
+        return new Point((int) x1, (int) y1);
     }
 
-    public Point calcReflectedPoint(Point point1, Point point2){
-        return new Point (0,0); 
+    public Point infiniteLine(Point point1, Point point2) {
+        double m = (double) (point2.y - point1.y) / (double) (point2.x - point1.x);
+        double y = m * (10000 - point1.x) + point1.y;
+        return new Point(10000, (int) y);
     }
-    
-    public void update(int width, int height) {      
+
+    public Point calcReflectedPoint(Point point1, Point point2) {
+        return new Point(0, 0);
+    }
+
+    public void update(int width, int height) {
         diameter = height - 200;
         arg0 = width - diameter - 50;
-        arg1 = 100;
         arg2 = diameter;
         arg3 = diameter;
-        arg4 = -45;
-        arg5 = 90;
 
     }
-  
 
     public void paint(Graphics2D g) {
         g.setColor(green);
         g.setStroke(new BasicStroke(15));   // Erzeugt breite bei Arc 
-        g.drawArc(arg0, arg1, arg2, arg3, -45, 90);
+        g.drawArc(arg0, arg1, arg2, arg3, arg4, arg5);
         g.setStroke(new BasicStroke(1));
     }
 

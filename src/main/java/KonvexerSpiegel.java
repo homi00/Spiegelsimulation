@@ -16,22 +16,15 @@ import java.awt.Point;
  */
 public class KonvexerSpiegel implements SpiegelObjekt {
     
-    public int arg0;  //x-Koord. obere linke Ecke
-    public int arg1; //y-Koord. obere linke Ecke
-    public int arg2; // setzt Breite in Horizontale
-    public int arg3; // Höhe setzt Streckung in Vertikale
-    public int arg4; // Startpunktwinkel gegen Uhrzeigersinn startet horizontal links
-    public int arg5; // Anteil des Kreisbogens mit Uhrzeigersinn
+    private int arg0;  //x-Koord. obere linke Ecke
+    private int arg1; //y-Koord. obere linke Ecke
+    private int arg2; // setzt Breite in Horizontale
+    private int arg3; // Höhe setzt Streckung in Vertikale
+    private int arg4 = -225; // Startpunktwinkel gegen Uhrzeigersinn startet horizontal links
+    private int arg5 = 90; // Anteil des Kreisbogens mit Uhrzeigersinn
     
 
-    public KonvexerSpiegel(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5) {
-        this.arg0 = arg0;
-        this.arg1 = arg1;
-        this.arg2 = arg2;
-        this.arg3= arg3;
-        this.arg4= arg4;
-        this.arg5= arg5;
-        
+    public KonvexerSpiegel() {
     }
     
     public boolean IsOnMirror(Point point1, Point point2){
@@ -58,9 +51,6 @@ public class KonvexerSpiegel implements SpiegelObjekt {
         arg1 = (int) (height * 0.1);
         arg2 = width - (int) (width * 0.5);
         arg3 = height - 100;
-        arg4 = -225;
-        arg5 = 90;
-
     }
     
     
