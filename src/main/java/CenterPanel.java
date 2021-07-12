@@ -1,5 +1,4 @@
 
-import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -7,7 +6,6 @@ import java.awt.Point;
 import java.awt.RenderingHints;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.geom.Point2D;
 import javax.swing.JPanel;
 import static java.awt.Color.yellow;
 
@@ -22,9 +20,6 @@ import static java.awt.Color.yellow;
  */
 public class CenterPanel extends JPanel {
 
-//    private Planerspiegel PSpiegel = new Planerspiegel(0, 0, 0, 0);
-//    private KonkaverSpiegel KKSpiegel = new KonkaverSpiegel(0, 0, 0, 0, 0, 0);
-//    private KonvexerSpiegel KVSpiegel = new KonvexerSpiegel(0, 0, 0, 0, 0, 0);
     
     private SpiegelObjekt spiegel = new Planerspiegel(0,0,0,0);
     
@@ -70,7 +65,7 @@ public class CenterPanel extends JPanel {
     }
 
      public void setKonvexerSpiegel() {
-        spiegel = new KonvexerSpiegel(0, 0, 0, 0,0, 0);
+        spiegel = new KonvexerSpiegel(0, 0, 0, 0, 0, 0);
         point1 = null;
         point2 = null;
         ersterKlick = true;
@@ -112,7 +107,7 @@ public class CenterPanel extends JPanel {
                 Point infinitePoint = spiegel.infiniteLine(point1, point2);
                 g2d.setColor(yellow);
                 g2d.drawLine(point3.x, point3.y, 10000, infinitePoint.y);
-            };
+            }
 
         }
         g2d.dispose();

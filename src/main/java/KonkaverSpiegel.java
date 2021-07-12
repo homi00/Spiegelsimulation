@@ -36,7 +36,11 @@ public class KonkaverSpiegel implements SpiegelObjekt {
      return true;
      }
      
+     
+     
     public Point calcPoint(Point point1, Point point2){
+      
+//     diameter = height - 200;
      double m = (double) (point2.y - point1.y) / (double) (point2.x - point1.x); 
      double b = (double) (point1.y) - m * (double)(point1.x);
      double r = (double) diameter/2;
@@ -45,7 +49,7 @@ public class KonkaverSpiegel implements SpiegelObjekt {
      double x1 = (-p/2.0)+ Math.sqrt((p*p/4.0)-q);
      double y1 = Math.sqrt(r*r-x1*x1);
      return new Point ((int) x1 + arg0, (int) y1 + arg1);
-             
+            
     }
 
     public Point infiniteLine(Point point1, Point point2){
@@ -55,7 +59,6 @@ public class KonkaverSpiegel implements SpiegelObjekt {
     public Point calcReflectedPoint(Point point1, Point point2){
         return new Point (0,0); 
     }
-    
     
     public void update(int width, int height) {      
         diameter = height - 200;
@@ -67,6 +70,7 @@ public class KonkaverSpiegel implements SpiegelObjekt {
         arg5 = 90;
 
     }
+  
 
     public void paint(Graphics2D g) {
         g.setColor(green);

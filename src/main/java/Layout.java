@@ -29,8 +29,6 @@ public class Layout implements ActionListener {
         borders.add(gutesCenter, BorderLayout.CENTER);
 
         ButtonPanel guteButtons = new ButtonPanel(gutesCenter);
-
-
         borders.add(guteButtons, BorderLayout.SOUTH);
 
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
