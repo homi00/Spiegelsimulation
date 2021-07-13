@@ -19,28 +19,33 @@ public class KonvexerSpiegel implements SpiegelObjekt {
     private int y; //y-Koord. obere linke Ecke
     private int w; // setzt Breite in Horizontale
     private int h; // Höhe setzt Streckung in Vertikale
-    private int sw = -225; // Startpunktwinkel gegen Uhrzeigersinn startet horizontal links sw= startwinkel
-    private int lw = 90; // Anteil des Kreisbogens mit Uhrzeigersinn lw=Längenwinkel
+    private final int SW = -225; // Startpunktwinkel gegen Uhrzeigersinn startet horizontal links SW= startwinkel
+    private final int LW = 90; // Anteil des Kreisbogens mit Uhrzeigersinn LW=Längenwinkel
 
     public KonvexerSpiegel() {
     }
 
+    @Override
     public Point calcPoint(Point point1, Point point2) {
         return new Point(0, 0);
     }
 
+    @Override
     public boolean isOnMirror(Point point1, Point point2) {
         return false;
     }
 
+    @Override
     public Point calcReflectedPoint(Point point1, Point point2) {
         return new Point(0, 0);
     }
 
+    @Override
     public Point infiniteLine(Point point1, Point point2) {
         return new Point(0, 0);
     }
 
+    @Override
     public void update(int width, int height) {
         x = width - (int) (width * 0.2);
         y = (int) (height * 0.1);
@@ -48,11 +53,12 @@ public class KonvexerSpiegel implements SpiegelObjekt {
         h = height - 100;
     }
 
+    @Override
     public void paint(Graphics2D g) {
         g.setColor(red);
 
         g.setStroke(new BasicStroke(15));   // Erzeugt breite bei Arc 
-        g.drawArc(x, y, w, h, sw, lw);
+        g.drawArc(x, y, w, h, SW, LW);
         g.setStroke(new BasicStroke(1));
     }
 }
