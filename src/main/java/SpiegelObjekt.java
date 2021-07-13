@@ -1,5 +1,4 @@
 
-import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 
@@ -10,7 +9,7 @@ import java.awt.Point;
  */
 /**
  *
- * @author Customer
+ * @author Erik Homes, Felicitas Kuhn, Theresa Stein
  */
 public interface SpiegelObjekt {
 
@@ -18,7 +17,7 @@ public interface SpiegelObjekt {
 
     void paint(Graphics2D g);
 
-    public boolean IsOnMirror(Point point1, Point point2);
+    public boolean isOnMirror(Point point1, Point point2);
 
     public Point calcPoint(Point point1, Point point2);
 

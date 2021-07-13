@@ -16,13 +16,12 @@ import static java.awt.Color.yellow;
  */
 /**
  *
- * @author Customer
+ * @author Erik Homes, Felicitas Kuhn, Theresa Stein
  */
 public class CenterPanel extends JPanel {
 
-    
     private SpiegelObjekt spiegel = new Planerspiegel();
-    
+
     private Point point1 = null;
     private Point point2 = null;
     private boolean ersterKlick = true;
@@ -34,7 +33,6 @@ public class CenterPanel extends JPanel {
         this.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                //Anfangspunkt = new Ball (e.getX(), e.getY());
                 if (ersterKlick == true) {
                     point1 = new Point(e.getX(), e.getY());
 
@@ -55,8 +53,8 @@ public class CenterPanel extends JPanel {
         ersterKlick = true;
         this.repaint();
     }
-    
-     public void setKonkaverSpiegel() {
+
+    public void setKonkaverSpiegel() {
         spiegel = new KonkaverSpiegel();
         point1 = null;
         point2 = null;
@@ -64,14 +62,14 @@ public class CenterPanel extends JPanel {
         this.repaint();
     }
 
-     public void setKonvexerSpiegel() {
+    public void setKonvexerSpiegel() {
         spiegel = new KonvexerSpiegel();
         point1 = null;
         point2 = null;
         ersterKlick = true;
         this.repaint();
     }
-     
+
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -79,27 +77,23 @@ public class CenterPanel extends JPanel {
         Graphics2D g2d = (Graphics2D) g;
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-        int w = this.getWidth ();
-        int h = this.getHeight ();
-        
-        spiegel.update(w,h);
-       
-        
+        int w = this.getWidth();
+        int h = this.getHeight();
+
+        spiegel.update(w, h);
+
         spiegel.paint(g2d);
-        
 
         if (point1 != null) {     // ungleich Null = es gibt einen Ball 
             Ball ball = new Ball(point1.x, point1.y);
             ball.paint(g2d);
         }
-        
-        
-        
+
         if (point1 != null && point2 != null) {
             Point point3 = spiegel.calcPoint(point1, point2);
             g2d.setColor(yellow);
             g2d.drawLine(point1.x, point1.y, point3.x, point3.y);
-            if (spiegel.IsOnMirror(point1, point2)) {
+            if (spiegel.isOnMirror(point1, point2)) {
                 Point point4 = spiegel.calcReflectedPoint(point1, point2);
                 g2d.drawLine(point3.x, point3.y, point4.x, point4.y);
 

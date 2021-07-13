@@ -11,43 +11,54 @@ import java.awt.Point;
  */
 /**
  *
- * @author Customer
+ * @author Erik Homes, Felicitas Kuhn, Theresa Stein
  */
 public class KonkaverSpiegel implements SpiegelObjekt {
 
-    private int arg0 = 0;  //x-Koord. obere linke Ecke
-    private int arg1 = 100; //y-Koord. obere linke Ecke
-    private int arg2 = 0; // setzt Breite in Horizontale
-    private int arg3 = 0; // Höhe setzt Streckung in Vertikale
-    private int arg4 = -45; // Startpunktwinkel gegen Uhrzeigersinn startet horizontal links
-    private int arg5 = 90; // Anteil des Kreisbogens mit Uhrzeigersinn
+    private int x = 0;  //x-Koordinate obere linke Ecke
+    private int y = 100; //y-Koordinate obere linke Ecke
+    private int w = 0;  
+    private int h = 0; 
+    private int sw = -45; // Startpunktwinkel 
+    private int lw = 90; // Winkel vom Kreisbogen 
     private int diameter = 0;
 
     public KonkaverSpiegel() {
     }
 
-    public boolean IsOnMirror(Point point1, Point point2) {
+/**
+ * Was macht die Methode....
+ * @param point1
+ * @param point2
+ * @return 
+ */
+    
+    public Point calcPoint(Point point1, Point point2) {
+        double m = (double) (point2.y - point1.y) / (double) (point2.x - point1.x); //Steigung des Strahls
+        double b = (double) (point1.y) - m * (double) (point1.x); //y-Achsenabschnitt des Strahls 
+        double r = (double) diameter / 2; //Radius vom Kreis
+        double xk = x + r; //x-Koordinate vom Mittelpunkt des Kreises
+        double yk = y + r; //y-Koordinate vom Mittelpunkt des Kreises
+        r = r - 7.5; // Radius abgezogen mit der Hälfte der gesetzten Breite 
+        double z = b - yk; //z=Konstante Faktoren zusammengefasst 
+        double p = (2.0 * m * z - 2.0 * xk) / (m * m + 1.0); //ausgerechnetes p (für p-q-Formel)
+        double q = (z * z + xk * xk - r * r) / (m * m + 1.0); //ausgerechnetes q (für p-q-Formel)
+        double x1 = (-p / 2.0) + Math.sqrt((p * p / 4.0) - q); //Koordinatentransformation des Mittelpunktes
+        double y1 = m * x1 + b; //Koordinatentransformation des Mittelpunktes
+        return new Point((int) x1, (int) y1);
+    }
+
+    public boolean isOnMirror(Point point1, Point point2) {
         double r = (double) diameter / 2;
-        double xk = arg0 + r;
+        double xk = x + r;
         r = r - 7.5;
-        double a = r * Math.cos((Math.abs(arg4) + 1.5) * Math.PI / 180.0) + xk;
+        double a = r * Math.cos((Math.abs(sw) + 1.5) * Math.PI / 180.0) + xk;
         Point point3 = calcPoint(point1, point2);
         return point3.x >= a;
     }
 
-    public Point calcPoint(Point point1, Point point2) {
-        double m = (double) (point2.y - point1.y) / (double) (point2.x - point1.x);
-        double b = (double) (point1.y) - m * (double) (point1.x);
-        double r = (double) diameter / 2;
-        double xk = arg0 + r;
-        double yk = arg1 + r;
-        r = r - 7.5;
-        double z = b - yk;
-        double p = (2.0 * m * z - 2.0 * xk) / (m * m + 1.0);
-        double q = (z * z + xk * xk - r * r) / (m * m + 1.0);
-        double x1 = (-p / 2.0) + Math.sqrt((p * p / 4.0) - q);
-        double y1 = m * x1 + b;
-        return new Point((int) x1, (int) y1);
+    public Point calcReflectedPoint(Point point1, Point point2) {
+        return new Point(0, 0);
     }
 
     public Point infiniteLine(Point point1, Point point2) {
@@ -56,23 +67,17 @@ public class KonkaverSpiegel implements SpiegelObjekt {
         return new Point(10000, (int) y);
     }
 
-    public Point calcReflectedPoint(Point point1, Point point2) {
-        return new Point(0, 0);
-    }
-
     public void update(int width, int height) {
         diameter = height - 200;
-        arg0 = width - diameter - 50;
-        arg2 = diameter;
-        arg3 = diameter;
-
+        x = width - diameter - 50;
+        w = diameter;
+        h = diameter;
     }
 
     public void paint(Graphics2D g) {
         g.setColor(green);
         g.setStroke(new BasicStroke(15));   // Erzeugt breite bei Arc 
-        g.drawArc(arg0, arg1, arg2, arg3, arg4, arg5);
+        g.drawArc(x, y, w, h, sw, lw);
         g.setStroke(new BasicStroke(1));
     }
-
 }

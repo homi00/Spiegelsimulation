@@ -13,11 +13,11 @@ import javax.swing.JPanel;
  */
 /**
  *
- * @author Customer
+ * @author Erik Homes, Felicitas Kuhn, Theresa Stein
  */
-public class Layout implements ActionListener {
+public class Layout {
 
-    JFrame frame = new JFrame("Auswahlmenü Spiegel");
+    JFrame frame = new JFrame("Spiegelsimulation");
     JPanel borders = new JPanel();
 
     Layout() {
@@ -32,28 +32,7 @@ public class Layout implements ActionListener {
         borders.add(guteButtons, BorderLayout.SOUTH);
 
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-//        frame.setLocationRelativeTo(null);        
         frame.setMinimumSize(new Dimension(700, 500));
         frame.setVisible(true);
-
-        
-        
-      
-       
-       
-       
-       
-       
-       
-            
-       
-       
-       
-        
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent arg0) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

@@ -1,3 +1,4 @@
+
 import java.awt.Color;
 import static java.awt.Color.pink;
 import java.awt.Graphics2D;
@@ -10,10 +11,9 @@ import java.awt.Graphics2D;
  */
 /**
  *
- * @author Customer
+ * @author Erik Homes, Felicitas Kuhn, Theresa Stein
  */
 public class Ball {
-
     public int x;
     public int y;
     public int r;
@@ -24,12 +24,10 @@ public class Ball {
         this.y = y;
         this.r = 20;
         this.c = pink;
-
     }
 
-    public void paint (Graphics2D g){
-	g.setColor(c);
-        g.fillOval(x-r/2, y-r/2, r, r);
-        
+    public void paint(Graphics2D g) {
+        g.setColor(c);
+        g.fillOval(x - r / 2, y - r / 2, r, r);
     }
 }

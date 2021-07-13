@@ -11,7 +11,7 @@ import javax.swing.JPanel;
  */
 /**
  *
- * @author Customer
+ * @author Erik Homes, Felicitas Kuhn, Theresa Stein
  */
 public class ButtonPanel extends JPanel {
 
@@ -25,7 +25,6 @@ public class ButtonPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent arg0) {
                 centerPanel.setPlanerspiegel();
-
             }
         });
 
@@ -34,7 +33,6 @@ public class ButtonPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent arg0) {
                 centerPanel.setKonkaverSpiegel();
-
             }
         });
 
@@ -43,7 +41,6 @@ public class ButtonPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent arg0) {
                 centerPanel.setKonvexerSpiegel();
-
             }
         });
 
@@ -52,7 +49,6 @@ public class ButtonPanel extends JPanel {
         add(concaveButton);
 
         add(convexButton);
-
     }
 
 }

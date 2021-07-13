@@ -6,11 +6,11 @@
 
 /**
  *
- * @author Customer
+ * @author Erik Homes, Felicitas Kuhn, Theresa Stein
  */
 public class Main {
+
     public static void main(String[] args) {
         Layout launchPage = new Layout();
     }
 }
-
