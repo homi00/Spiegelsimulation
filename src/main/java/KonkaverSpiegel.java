@@ -17,8 +17,8 @@ public class KonkaverSpiegel implements SpiegelObjekt {
 
     private int x = 0;  //x-Koordinate obere linke Ecke
     private final int Y = 100; //y-Koordinate obere linke Ecke
-    private int w = 0;  
-    private int h = 0; 
+    private int w = 0;
+    private int h = 0;
     private final int SW = -45; // Startpunktwinkel 
     private final int LW = 90; // Winkel vom Kreisbogen 
     private int diameter = 0;
@@ -26,13 +26,13 @@ public class KonkaverSpiegel implements SpiegelObjekt {
     public KonkaverSpiegel() {
     }
 
-/**
- * Was macht die Methode....
- * @param point1
- * @param point2
- * @return 
- */
-    
+    /**
+     * Was macht die Methode....
+     *
+     * @param point1
+     * @param point2
+     * @return
+     */
     @Override
     public Point calcPoint(Point point1, Point point2) {
         double m = (double) (point2.y - point1.y) / (double) (point2.x - point1.x); //Steigung des Strahls
@@ -44,9 +44,12 @@ public class KonkaverSpiegel implements SpiegelObjekt {
         double z = b - yk; //z=Konstante Faktoren zusammengefasst 
         double p = (2.0 * m * z - 2.0 * xk) / (m * m + 1.0); //ausgerechnetes p (für p-q-Formel)
         double q = (z * z + xk * xk - r * r) / (m * m + 1.0); //ausgerechnetes q (für p-q-Formel)
-        double x1 = (-p / 2.0) + Math.sqrt((p * p / 4.0) - q); //Koordinatentransformation des Mittelpunktes
-        double y1 = m * x1 + b; //Koordinatentransformation des Mittelpunktes
-        return new Point((int) x1, (int) y1);
+        if ((p * p / 4.0) - q >= 0) {
+            double x1 = (-p / 2.0) + Math.sqrt((p * p / 4.0) - q); //Koordinatentransformation des Mittelpunktes
+            double y1 = m * x1 + b; //Koordinatentransformation des Mittelpunktes
+            return new Point((int) x1, (int) y1);
+        }
+        return new Point(0, 0);
     }
 
     @Override
@@ -61,7 +64,18 @@ public class KonkaverSpiegel implements SpiegelObjekt {
 
     @Override
     public Point calcReflectedPoint(Point point1, Point point2) {
-        return new Point(0, 0);
+        double r = (double) diameter / 2;
+        Point center = new Point((int) (x + r), (int) (Y + r));
+        r = r - 7.5;
+        Point point3 = calcPoint(point1, point2);
+        double alpha = Math.acos((point3.x - center.x) / r);
+        if (point3.y > center.y) {
+            alpha = -alpha;
+        }
+        Point point4 = rotate(center, point1, alpha);
+        point4.y = 2 * center.y - point1.y;
+        point4 = rotate(center, point4, -alpha);
+        return point4;
     }
 
     @Override
@@ -85,5 +99,11 @@ public class KonkaverSpiegel implements SpiegelObjekt {
         g.setStroke(new BasicStroke(15));   // Erzeugt breite bei Arc 
         g.drawArc(x, Y, w, h, SW, LW);
         g.setStroke(new BasicStroke(1));
+    }
+
+    private Point rotate(Point rp, Point p, double alpha) {
+        double x = (Math.cos(alpha) * (p.x - rp.x) - Math.sin(alpha) * (p.y - rp.y)) + rp.x;
+        double y = (Math.sin(alpha) * (p.x - rp.x) + Math.cos(alpha) * (p.y - rp.y)) + rp.y;
+        return new Point((int) x, (int) y);
     }
 }
