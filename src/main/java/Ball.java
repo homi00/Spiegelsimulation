@@ -13,19 +13,22 @@ import java.awt.Graphics2D;
  *
  * @author Erik Homes, Felicitas Kuhn, Theresa Stein
  */
+/**
+ * Diese Klasse stellt einen Ball dar
+ * @author Erik Homes, Felicitas Kuhn, Theresa Stein
+ */
 public class Ball {
-    public int x;
-    public int y;
-    public int r;
-    public Color c;
+    public int x; // X-Koordinate
+    public int y; // Y-Koordinate
+    public int r = 20; // Radius
+    public Color c = pink; // Farbe
 
     public Ball(int x, int y) {
         this.x = x;
         this.y = y;
-        this.r = 20;
-        this.c = pink;
     }
 
+    // Zeichnet den Ball
     public void paint(Graphics2D g) {
         g.setColor(c);
         g.fillOval(x - r / 2, y - r / 2, r, r);

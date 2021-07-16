@@ -13,14 +13,18 @@ import java.awt.Point;
  *
  * @author Erik Homes, Felicitas Kuhn, Theresa Stein
  */
+/**
+ * Klasse für konvexen Spiegel muss noch implementiert werden
+ * @author Erik Homes, Felicitas Kuhn, Theresa Stein
+ */
 public class KonvexerSpiegel implements SpiegelObjekt {
 
-    private int x;  //x-Koord. obere linke Ecke
-    private int y; //y-Koord. obere linke Ecke
-    private int w; // setzt Breite in Horizontale
-    private int h; // Höhe setzt Streckung in Vertikale
-    private final int SW = -225; // Startpunktwinkel gegen Uhrzeigersinn startet horizontal links SW= startwinkel
-    private final int LW = 90; // Anteil des Kreisbogens mit Uhrzeigersinn LW=Längenwinkel
+    private int x;  //x-Koordinate obere linke Ecke
+    private int y; //y-Koordinate obere linke Ecke
+    private int w; // Breite des Kreise 
+    private int h; // Höhe des Kreises 
+    private final int SW = -225; // Startpunktwinkel 
+    private final int LW = 90; // Winkel vom Kreisbogen
 
     public KonvexerSpiegel() {
     }

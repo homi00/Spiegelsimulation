@@ -13,13 +13,19 @@ import javax.swing.JPanel;
  *
  * @author Erik Homes, Felicitas Kuhn, Theresa Stein
  */
+/**
+ * Klasse für die Auswahl der Spiegelart
+ * @author Erik Homes, Felicitas Kuhn, Theresa Stein
+ */
 public class ButtonPanel extends JPanel {
 
-    CenterPanel centerPanel;
+    CenterPanel centerPanel; // Für den Zugriff auf das CenterPanel
 
     ButtonPanel(CenterPanel centerPanel) {
         this.centerPanel = centerPanel;
 
+        // Wenn entsprechender Button gedrückt wurde, soll im CenterPanel auf 
+        // den entsprechendne Spiegel umgeschaltet werden
         JButton planeButton = new JButton("Planer Spiegel");
         planeButton.addActionListener(new ActionListener() {
             @Override
@@ -44,6 +50,7 @@ public class ButtonPanel extends JPanel {
             }
         });
 
+        // Hinzufügen der Buttons für die Auswahl der Spiegelart
         add(planeButton);
 
         add(concaveButton);
